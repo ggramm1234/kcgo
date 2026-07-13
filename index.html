@@ -11,34 +11,34 @@
             box-sizing: border-box;
             user-select: none;
         }
+        html,
         body {
-            background: #0b0e1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
             min-height: 100vh;
+            background: #0b0e1a;
             font-family: 'Segoe UI', sans-serif;
             padding: 10px;
         }
         .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 20px 25px;
             background: #14182b;
-            padding: 20px 25px 25px;
             border-radius: 30px;
             border: 2px solid #FFD700;
-            text-align: center;
-            width: 100%;
-            max-width: 1400px;
-            min-height: 90vh;
+            min-height: 95vh;
         }
         h1 {
             color: #FFD700;
-            font-size: clamp(28px, 5vw, 48px);
+            font-size: clamp(32px, 5vw, 52px);
+            text-align: center;
             margin-bottom: 5px;
         }
         .balance {
             color: #fff;
-            font-size: clamp(18px, 2.5vw, 26px);
-            margin: 5px 0;
+            font-size: clamp(20px, 2.8vw, 30px);
+            text-align: center;
+            margin: 5px 0 15px;
         }
         .balance span {
             color: #FFD700;
@@ -46,45 +46,46 @@
         }
         .cases-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
             margin: 15px 0;
         }
         .case-card {
             background: #0f3460;
-            padding: 20px 15px;
-            border-radius: 15px;
+            padding: 22px 15px;
+            border-radius: 20px;
             border: 2px solid #2a2f4a;
             cursor: pointer;
             transition: 0.3s;
+            text-align: center;
         }
         .case-card:hover {
             border-color: #FFD700;
             transform: scale(1.03);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
         }
         .case-card .case-icon {
-            font-size: clamp(40px, 6vw, 70px);
+            font-size: clamp(50px, 7vw, 80px);
         }
         .case-card .case-name {
             color: #FFD700;
-            font-size: clamp(16px, 1.8vw, 22px);
+            font-size: clamp(18px, 2vw, 26px);
             font-weight: bold;
         }
         .case-card .case-price {
             color: #bcc3e0;
-            font-size: clamp(14px, 1.5vw, 18px);
+            font-size: clamp(16px, 1.6vw, 22px);
         }
         .case-card .case-items {
             color: #7a82a8;
-            font-size: clamp(12px, 1.2vw, 15px);
+            font-size: clamp(14px, 1.2vw, 18px);
         }
         .case-card .case-badge {
             background: #f44336;
             color: #fff;
-            padding: 2px 12px;
+            padding: 2px 14px;
             border-radius: 12px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
             display: inline-block;
             margin-top: 5px;
@@ -93,34 +94,33 @@
             margin: 15px 0;
             padding: 15px;
             background: #0f3460;
-            border-radius: 15px;
-            text-align: left;
-            max-height: 300px;
+            border-radius: 20px;
+            max-height: 340px;
             overflow-y: auto;
         }
         .skin-list-title {
             color: #FFD700;
-            font-size: clamp(16px, 2vw, 22px);
+            font-size: clamp(18px, 2.2vw, 28px);
             font-weight: bold;
-            margin-bottom: 10px;
             text-align: center;
+            margin-bottom: 12px;
         }
         .skin-list-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 8px 12px;
+            gap: 14px;
+            padding: 8px 14px;
             border-bottom: 1px solid #1a1a2e;
             color: #ccc;
-            font-size: clamp(13px, 1.2vw, 16px);
+            font-size: clamp(14px, 1.2vw, 18px);
         }
         .skin-list-item img {
-            width: 70px;
-            height: 35px;
+            width: 80px;
+            height: 40px;
             object-fit: contain;
             background: #0a0a1a;
-            border-radius: 4px;
-            padding: 2px;
+            border-radius: 6px;
+            padding: 4px;
         }
         .skin-list-item .sl-name {
             flex: 1;
@@ -132,7 +132,7 @@
         }
         .skin-list-item .sl-rarity {
             font-size: 12px;
-            padding: 2px 12px;
+            padding: 2px 14px;
             border-radius: 12px;
             font-weight: bold;
         }
@@ -140,39 +140,40 @@
             margin: 15px 0;
             padding: 20px;
             background: #0f3460;
-            border-radius: 15px;
-            min-height: 140px;
+            border-radius: 20px;
+            min-height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
         }
         .result .skin-img {
-            width: clamp(150px, 20vw, 240px);
+            width: clamp(180px, 25vw, 280px);
             height: auto;
-            max-height: 120px;
+            max-height: 140px;
             object-fit: contain;
             background: #0a0a1a;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 8px;
         }
         .result .skin-name {
-            font-size: clamp(20px, 2.5vw, 30px);
+            font-size: clamp(22px, 2.8vw, 34px);
             font-weight: bold;
+            color: #fff;
         }
         .result .skin-price {
-            font-size: clamp(16px, 1.8vw, 22px);
+            font-size: clamp(18px, 2vw, 26px);
             color: #FFD700;
         }
         .result .skin-rarity {
-            font-size: 14px;
-            padding: 4px 16px;
+            font-size: 15px;
+            padding: 4px 18px;
             border-radius: 20px;
             margin-top: 6px;
         }
         .result .spinning-text {
             color: #FFD700;
-            font-size: clamp(24px, 4vw, 40px);
+            font-size: clamp(28px, 4vw, 44px);
             font-weight: bold;
             animation: pulse 0.3s infinite alternate;
         }
@@ -184,9 +185,9 @@
             background: #FFD700;
             color: #1a1a2e;
             border: none;
-            padding: 16px 20px;
+            padding: 18px 20px;
             border-radius: 40px;
-            font-size: clamp(18px, 2.5vw, 28px);
+            font-size: clamp(20px, 2.8vw, 32px);
             font-weight: bold;
             cursor: pointer;
             transition: 0.2s;
@@ -195,7 +196,7 @@
         }
         .btn-battle:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.5);
         }
         .btn-battle:disabled {
             opacity: 0.5;
@@ -204,21 +205,20 @@
         }
         .inventory {
             margin-top: 15px;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
             background: #0f3460;
-            border-radius: 15px;
-            padding: 10px;
-            text-align: left;
+            border-radius: 20px;
+            padding: 12px;
         }
         .inv-item {
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-bottom: 1px solid #1a1a2e;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: #ccc;
-            font-size: clamp(13px, 1.2vw, 16px);
+            font-size: clamp(14px, 1.2vw, 18px);
         }
         .inv-item .inv-name {
             font-weight: bold;
@@ -226,16 +226,16 @@
         }
         .inv-item .inv-price {
             color: #FFD700;
-            margin: 0 10px;
+            margin: 0 12px;
         }
         .inv-item .btn-sell {
             background: #f44336;
             color: #fff;
             border: none;
-            padding: 2px 14px;
+            padding: 3px 16px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
         }
         .inv-item .btn-sell:hover {
@@ -257,86 +257,86 @@
 <body>
 <div class="container">
     <h1>🎁 Кейс-симулятор CS2</h1>
-    <div class="balance">💰 Баланс: <span id="balance">2000</span> ₽</div>
+    <div class="balance">💰 Баланс: <span id="balance">10000</span> ₽</div>
 
     <div class="cases-grid" id="casesGrid"></div>
 
     <div id="skinListContainer" class="skin-list" style="display:none;">
-        <div class="skin-list-title" id="skinListTitle">Скины в кейсе</div>
+        <div class="skin-list-title" id="skinListTitle">🎲 Скины в кейсе</div>
         <div id="skinListItems"></div>
     </div>
 
     <button class="btn-battle" id="openBtn" style="display:none;">🔑 Открыть кейс</button>
 
     <div class="result" id="result">
-        <span style="color:#888; font-size: clamp(16px, 2vw, 22px);">Выбери кейс и нажми "Открыть"</span>
+        <span style="color:#888; font-size: clamp(18px, 2.2vw, 28px);">Выбери кейс и нажми "Открыть"</span>
     </div>
 
     <div class="inventory" id="inventory">
-        <div style="color:#888; text-align:center;">🎒 Инвентарь (скины для продажи)</div>
+        <div style="color:#888; text-align:center; font-size: clamp(16px, 1.8vw, 22px);">🎒 Инвентарь (скины для продажи)</div>
     </div>
 </div>
 
 <script>
-    // ==================== КЕЙСЫ С НОВЫМИ НАЗВАНИЯМИ ====================
+    // ==================== КЕЙСЫ (ЦЕНЫ КЕЙСОВ И СКИНОВ ×10) ====================
     const caseData = [{
         id: 'case1',
         name: 'Субнатика',
-        price: 58,
+        price: 580,   // ×10
         icon: '🌊',
         items: 43,
         rarityLabel: 'NEW',
         skins: [
-            { name: "P250 | Sand Dune", price: 2, rarity: "Common", class: "rarity-common", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_p250_irradiated_alert_light_large.91f6e6b2f5f5b3f5c0f5f5b3f5c0f5f5.png" },
-            { name: "MAG-7 | Heat", price: 4, rarity: "Common", class: "rarity-common", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mag7_heat_large.8c3a8a3b8a3b8a3b8a3b8a3b8a3b8a3b.png" },
-            { name: "MP9 | Green Plaid", price: 6, rarity: "Uncommon", class: "rarity-uncommon", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mp9_green_plaid_large.9f6e6b2f5f5b3f5c0f5f5b3f5c0f5f5.png" },
-            { name: "AWP | Safari Mesh", price: 8, rarity: "Uncommon", class: "rarity-uncommon", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_safari_mesh_large.0b2c5b3c8a3b8a3b8a3b8a3b8a3b8a3b.png" },
-            { name: "M4A1-S | Nightmare", price: 12, rarity: "Rare", class: "rarity-rare", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_s_nightmare_large.1c3a8a3b8a3b8a3b8a3b8a3b8a3b8a3b.png" }
+            { name: "P250 | Sand Dune", price: 30, rarity: "Common", class: "rarity-common", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_p250_irradiated_alert_light_large.91f6e6b2f5f5b3f5c0f5f5b3f5c0f5f5.png" },
+            { name: "MAG-7 | Heat", price: 50, rarity: "Common", class: "rarity-common", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mag7_heat_large.8c3a8a3b8a3b8a3b8a3b8a3b8a3b8a3b.png" },
+            { name: "MP9 | Green Plaid", price: 80, rarity: "Uncommon", class: "rarity-uncommon", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mp9_green_plaid_large.9f6e6b2f5f5b3f5c0f5f5b3f5c0f5f5.png" },
+            { name: "AWP | Safari Mesh", price: 120, rarity: "Uncommon", class: "rarity-uncommon", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_safari_mesh_large.0b2c5b3c8a3b8a3b8a3b8a3b8a3b8a3b.png" },
+            { name: "M4A1-S | Nightmare", price: 250, rarity: "Rare", class: "rarity-rare", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_s_nightmare_large.1c3a8a3b8a3b8a3b8a3b8a3b8a3b8a3b.png" }
         ]
     }, {
         id: 'case2',
         name: 'Евро трак',
-        price: 198,
+        price: 1980,  // ×10
         icon: '🚛',
         items: 40,
         rarityLabel: 'NEW',
         skins: [
-            { name: "AK-47 | Slate", price: 20, rarity: "Rare", class: "rarity-rare", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_slate_large.2d4b5c3d8a3b8a3b8a3b8a3b8a3b8a3b.png" },
-            { name: "AWP | Mortis", price: 40, rarity: "Epic", class: "rarity-epic", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_mortis_large.3e5c6d4e9b4c9b4c9b4c9b4c9b4c9b4c.png" },
-            { name: "AK-47 | Neon Rider", price: 70, rarity: "Legendary", class: "rarity-legendary", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_neon_rider_large.4f6d7e5f0c5d0c5d0c5d0c5d0c5d0c5d.png" },
-            { name: "M4A1-S | Printstream", price: 120, rarity: "Covert", class: "rarity-covert", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_s_printstream_large.5g7e8f6g1d6e1d6e1d6e1d6e1d6e1d6e.png" }
+            { name: "AK-47 | Slate", price: 300, rarity: "Rare", class: "rarity-rare", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_slate_large.2d4b5c3d8a3b8a3b8a3b8a3b8a3b8a3b.png" },
+            { name: "AWP | Mortis", price: 600, rarity: "Epic", class: "rarity-epic", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_mortis_large.3e5c6d4e9b4c9b4c9b4c9b4c9b4c9b4c.png" },
+            { name: "AK-47 | Neon Rider", price: 1200, rarity: "Legendary", class: "rarity-legendary", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_neon_rider_large.4f6d7e5f0c5d0c5d0c5d0c5d0c5d0c5d.png" },
+            { name: "M4A1-S | Printstream", price: 2500, rarity: "Covert", class: "rarity-covert", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_s_printstream_large.5g7e8f6g1d6e1d6e1d6e1d6e1d6e1d6e.png" }
         ]
     }, {
         id: 'case3',
         name: 'КС2',
-        price: 498,
+        price: 4980,  // ×10
         icon: '⚔️',
         items: 41,
         rarityLabel: 'NEW',
         skins: [
-            { name: "AWP | Dragon Lore", price: 160, rarity: "Covert", class: "rarity-covert", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_dragon_lore_large.0b2c5b3c8a3b8a3b8a3b8a3b8a3b8a3b.png" },
-            { name: "Karambit | Doppler", price: 300, rarity: "Knife", class: "rarity-knife", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_karambit_doppler_large.6h8f9g7h2e7f2e7f2e7f2e7f2e7f2e7.png" },
-            { name: "M9 Bayonet | Fade", price: 360, rarity: "Knife", class: "rarity-knife", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_m9_bayonet_fade_large.7i9g0h8i3f8g3f8g3f8g3f8g3f8g3f8.png" },
-            { name: "Sport Gloves | Vice", price: 400, rarity: "Gloves", class: "rarity-gloves", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_gloves_sport_vice_large.8j0h1i9j4g9h4g9h4g9h4g9h4g9h4g9.png" }
+            { name: "AWP | Dragon Lore", price: 3500, rarity: "Covert", class: "rarity-covert", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_dragon_lore_large.0b2c5b3c8a3b8a3b8a3b8a3b8a3b8a3b.png" },
+            { name: "Karambit | Doppler", price: 6000, rarity: "Knife", class: "rarity-knife", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_karambit_doppler_large.6h8f9g7h2e7f2e7f2e7f2e7f2e7f2e7.png" },
+            { name: "M9 Bayonet | Fade", price: 7500, rarity: "Knife", class: "rarity-knife", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_m9_bayonet_fade_large.7i9g0h8i3f8g3f8g3f8g3f8g3f8g3f8.png" },
+            { name: "Sport Gloves | Vice", price: 8500, rarity: "Gloves", class: "rarity-gloves", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_gloves_sport_vice_large.8j0h1i9j4g9h4g9h4g9h4g9h4g9h4g9.png" }
         ]
     }, {
         id: 'case4',
         name: 'Дота 2',
-        price: 1198,
+        price: 11980, // ×10
         icon: '🏆',
         items: 49,
         rarityLabel: 'NEW',
         skins: [
-            { name: "Karambit | Fade", price: 600, rarity: "Knife", class: "rarity-knife", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_karambit_fade_large.6h8f9g7h2e7f2e7f2e7f2e7f2e7f2e7.png" },
-            { name: "Butterfly Knife | Crimson Web", price: 800, rarity: "Knife", class: "rarity-knife", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_butterfly_crimson_web_large.9k1i2j0k5h0i5h0i5h0i5h0i5h0i5h0.png" },
-            { name: "Specialist Gloves | Crimson Web", price: 700, rarity: "Gloves", class: "rarity-gloves", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_gloves_specialist_crimson_web_large.0a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p.png" },
-            { name: "AWP | Gungnir", price: 1000, rarity: "Covert", class: "rarity-covert", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_gungnir_large.1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p.png" },
-            { name: "AK-47 | Gold Arabesque", price: 900, rarity: "Legendary", class: "rarity-legendary", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_gold_arabesque_large.2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q.png" }
+            { name: "Karambit | Fade", price: 12000, rarity: "Knife", class: "rarity-knife", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_karambit_fade_large.6h8f9g7h2e7f2e7f2e7f2e7f2e7f2e7.png" },
+            { name: "Butterfly Knife | Crimson Web", price: 16000, rarity: "Knife", class: "rarity-knife", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_butterfly_crimson_web_large.9k1i2j0k5h0i5h0i5h0i5h0i5h0i5h0.png" },
+            { name: "Specialist Gloves | Crimson Web", price: 14000, rarity: "Gloves", class: "rarity-gloves", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_gloves_specialist_crimson_web_large.0a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p.png" },
+            { name: "AWP | Gungnir", price: 20000, rarity: "Covert", class: "rarity-covert", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_gungnir_large.1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p.png" },
+            { name: "AK-47 | Gold Arabesque", price: 18000, rarity: "Legendary", class: "rarity-legendary", img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_gold_arabesque_large.2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q.png" }
         ]
     }];
 
     // ==================== СОСТОЯНИЕ ====================
-    let balance = 2000;
+    let balance = 10000;
     let inventory = [];
     let selectedCase = null;
     let isSpinning = false;
@@ -378,9 +378,8 @@
         openBtn.style.display = 'block';
         renderCases();
         resultDiv.innerHTML =
-            `<span style="color:#888; font-size: clamp(16px, 2vw, 22px);">Выбран кейс: <span style="color:#FFD700;">${caseObj.name}</span> (${caseObj.price}₽)</span>`;
+            `<span style="color:#888; font-size: clamp(18px, 2.2vw, 28px);">Выбран кейс: <span style="color:#FFD700;">${caseObj.name}</span> (${caseObj.price}₽)</span>`;
 
-        // Показываем список скинов
         skinListContainer.style.display = 'block';
         skinListTitle.textContent = `🎲 Скины в кейсе «${caseObj.name}»`;
         skinListItems.innerHTML = '';
@@ -388,7 +387,7 @@
             const item = document.createElement('div');
             item.className = 'skin-list-item';
             item.innerHTML = `
-                <img src="${skin.img}" alt="${skin.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2270%22 height=%2235%22%3E%3Crect width=%2270%22 height=%2235%22 fill=%22%23333%22/%3E%3Ctext x=%2235%22 y=%2220%22 text-anchor=%22middle%22 fill=%22%23FFD700%22 font-size=%2216%22%3E🎁%3C/text%3E%3C/svg%3E'">
+                <img src="${skin.img}" alt="${skin.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2240%22%3E%3Crect width=%2280%22 height=%2240%22 fill=%22%23333%22/%3E%3Ctext x=%2240%22 y=%2222%22 text-anchor=%22middle%22 fill=%22%23FFD700%22 font-size=%2218%22%3E🎁%3C/text%3E%3C/svg%3E'">
                 <span class="sl-name">${skin.name}</span>
                 <span class="sl-price">${skin.price} ₽</span>
                 <span class="sl-rarity ${skin.class}">${skin.rarity}</span>
@@ -445,12 +444,12 @@
         inventory.splice(index, 1);
         updateUI();
         resultDiv.innerHTML =
-        `<span style="color:#4caf50; font-size: clamp(16px, 2vw, 22px);">✅ Продано: ${skin.name} за ${skin.price}₽</span>`;
+            `<span style="color:#4caf50; font-size: clamp(18px, 2.2vw, 28px);">✅ Продано: ${skin.name} за ${skin.price}₽</span>`;
     }
 
     function renderInventory() {
         if (inventory.length === 0) {
-            inventoryDiv.innerHTML = `<div style="color:#888; text-align:center;">🎒 Инвентарь пуст</div>`;
+            inventoryDiv.innerHTML = `<div style="color:#888; text-align:center; font-size: clamp(16px, 1.8vw, 22px);">🎒 Инвентарь пуст</div>`;
             return;
         }
         let html = '';
@@ -478,7 +477,7 @@
     renderCases();
     updateUI();
     resultDiv.innerHTML =
-        `<span style="color:#888; font-size: clamp(16px, 2vw, 22px);">Выбери кейс и нажми "Открыть"</span>`;
+        `<span style="color:#888; font-size: clamp(18px, 2.2vw, 28px);">Выбери кейс и нажми "Открыть"</span>`;
 </script>
 </body>
 </html>
