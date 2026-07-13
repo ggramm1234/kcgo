@@ -1,11 +1,348 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Кейс-симулятор CS2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        body {
+            background: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 15px;
+        }
+        .container {
+            background: #16213e;
+            padding: 30px;
+            border-radius: 30px;
+            border: 2px solid #FFD700;
+            text-align: center;
+            max-width: 750px;
+            width: 100%;
+        }
+        h1 {
+            color: #FFD700;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        .balance {
+            color: #fff;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .balance span {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 28px;
+        }
+        .case-img {
+            font-size: 80px;
+            margin: 10px 0;
+        }
+        .btn {
+            background: #FFD700;
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            margin: 5px;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-buy {
+            background: #4caf50;
+            color: white;
+        }
+        .btn-buy:hover {
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.4);
+        }
+        .result {
+            margin: 15px 0;
+            padding: 15px;
+            background: #0f3460;
+            border-radius: 15px;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: all 0.1s;
+        }
+        .result .skin-img {
+            width: 180px;
+            height: 90px;
+            object-fit: contain;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            background: #0a0a1a;
+            padding: 5px;
+        }
+        .result .skin-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .result .skin-price {
+            font-size: 20px;
+            color: #FFD700;
+        }
+        .result .skin-rarity {
+            font-size: 14px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-top: 5px;
+        }
+        .result .spinning-text {
+            color: #FFD700;
+            font-size: 28px;
+            font-weight: bold;
+            animation: pulse 0.3s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+        .inventory {
+            margin-top: 15px;
+            max-height: 250px;
+            overflow-y: auto;
+            background: #0f3460;
+            border-radius: 15px;
+            padding: 10px;
+            text-align: left;
+        }
+        .inv-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #1a1a2e;
+            color: #ccc;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin: 2px 0;
+        }
+        .inv-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .inv-item .inv-img {
+            width: 50px;
+            height: 30px;
+            object-fit: contain;
+            margin-right: 10px;
+            background: #0a0a1a;
+            border-radius: 4px;
+            padding: 2px;
+        }
+        .inv-item .inv-name {
+            font-weight: bold;
+            flex: 1;
+            font-size: 14px;
+        }
+        .inv-item .inv-price {
+            color: #FFD700;
+            margin: 0 10px;
+        }
+        .inv-item .btn-sell {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 3px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .inv-item .btn-sell:hover {
+            background: #d32f2f;
+        }
+        .rarity-common { background: #8f8f8f; color: #fff; }
+        .rarity-uncommon { background: #4caf50; color: #fff; }
+        .rarity-rare { background: #2196f3; color: #fff; }
+        .rarity-epic { background: #9c27b0; color: #fff; }
+        .rarity-legendary { background: #ff9800; color: #fff; }
+        .rarity-covert { background: #f44336; color: #fff; }
+        .rarity-knife { background: #FFD700; color: #1a1a2e; }
+        .rarity-gloves { background: #e91e63; color: #fff; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f3460; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #FFD700; border-radius: 10px; }
+    </style>
+</head>
 <body>
-   <h1>кошка</h1>
-   <img src="photo.jpeg"alt="Кошка"width="500">
+<div class="container">
+    <h1>🎁 Кейс-симулятор CS2</h1>
+    <div class="balance">💰 Баланс: <span id="balance">1000</span> $</div>
+    <div class="case-img">📦</div>
+    <button class="btn" id="openBtn">🔑 Открыть кейс (250$)</button>
+    <button class="btn btn-buy" id="buyCaseBtn">📦 Купить кейс (200$)</button>
+    <div class="result" id="result">
+        <span style="color:#888;">Нажми "Открыть кейс"</span>
+    </div>
+    <div class="inventory" id="inventory">
+        <div style="color:#888; text-align:center;">🎒 Инвентарь (скины для продажи)</div>
+    </div>
+</div>
 
-   <img src="photo2.jpg"alt="Еще Кошка"width="500">
+<script>
+    // ==================== СКИНЫ С РЕАЛЬНЫМИ КАРТИНКАМИ ====================
+    const skins = [
+        { name: "P250 | Sand Dune", price: 3, rarity: "Common", class: "rarity-common", chance: 30, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_p250_irradiated_alert_light_large.91f6e6b2f5f5b3f5c0f5f5b3f5c0f5f5.png" },
+        { name: "MAG-7 | Heat", price: 5, rarity: "Common", class: "rarity-common", chance: 25, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mag7_heat_large.8c3a8a3b8a3b8a3b8a3b8a3b8a3b8a3b.png" },
+        { name: "MP9 | Green Plaid", price: 8, rarity: "Uncommon", class: "rarity-uncommon", chance: 15, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mp9_green_plaid_large.9f6e6b2f5f5b3f5c0f5f5b3f5c0f5f5.png" },
+        { name: "AWP | Safari Mesh", price: 12, rarity: "Uncommon", class: "rarity-uncommon", chance: 12, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_safari_mesh_large.0b2c5b3c8a3b8a3b8a3b8a3b8a3b8a3b.png" },
+        { name: "M4A1-S | Nightmare", price: 25, rarity: "Rare", class: "rarity-rare", chance: 8, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_s_nightmare_large.1c3a8a3b8a3b8a3b8a3b8a3b8a3b8a3b.png" },
+        { name: "AK-47 | Slate", price: 30, rarity: "Rare", class: "rarity-rare", chance: 5, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_slate_large.2d4b5c3d8a3b8a3b8a3b8a3b8a3b8a3b.png" },
+        { name: "AWP | Mortis", price: 60, rarity: "Epic", class: "rarity-epic", chance: 2.5, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_mortis_large.3e5c6d4e9b4c9b4c9b4c9b4c9b4c9b4c.png" },
+        { name: "AK-47 | Neon Rider", price: 120, rarity: "Legendary", class: "rarity-legendary", chance: 1.2, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_neon_rider_large.4f6d7e5f0c5d0c5d0c5d0c5d0c5d0c5d.png" },
+        { name: "M4A1-S | Printstream", price: 250, rarity: "Covert", class: "rarity-covert", chance: 0.6, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_s_printstream_large.5g7e8f6g1d6e1d6e1d6e1d6e1d6e1d6e.png" },
+        { name: "Karambit | Fade", price: 800, rarity: "Knife", class: "rarity-knife", chance: 0.3, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_karambit_fade_large.6h8f9g7h2e7f2e7f2e7f2e7f2e7f2e7.png" },
+        { name: "Sport Gloves | Vice", price: 1200, rarity: "Gloves", class: "rarity-gloves", chance: 0.1, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_gloves_sport_vice_large.7i9g0h8i3f8g3f8g3f8g3f8g3f8g3f8.png" },
+    ];
 
-   <img src="photo3.jpg"alt="Еще 1 Кошка"width="500">
+    // ==================== СОСТОЯНИЕ ====================
+    let balance = 1000;
+    let inventory = [];
+    let casePrice = 250;
+    let caseBuyPrice = 200;
+    let isSpinning = false;
+
+    const balanceSpan = document.getElementById('balance');
+    const resultDiv = document.getElementById('result');
+    const inventoryDiv = document.getElementById('inventory');
+    const openBtn = document.getElementById('openBtn');
+    const buyCaseBtn = document.getElementById('buyCaseBtn');
+
+    // ==================== ФУНКЦИИ ====================
+    function updateUI() {
+        balanceSpan.textContent = balance;
+        renderInventory();
+        openBtn.disabled = balance < casePrice || isSpinning;
+        buyCaseBtn.disabled = balance < caseBuyPrice;
+    }
+
+    function getRandomSkin() {
+        const rand = Math.random() * 100;
+        let cumulative = 0;
+        for (const skin of skins) {
+            cumulative += skin.chance;
+            if (rand <= cumulative) {
+                return { ...skin };
+            }
+        }
+        return { ...skins[skins.length - 1] };
+    }
+
+    function openCase() {
+        if (balance < casePrice || isSpinning) return;
+        balance -= casePrice;
+        updateUI();
+        startSpin();
+    }
+
+    function startSpin() {
+        isSpinning = true;
+        openBtn.disabled = true;
+        
+        // Показываем анимацию крутки
+        resultDiv.innerHTML = `<div class="spinning-text">🎰 КРУТИМ...</div>`;
+        
+        // Эффект крутки - меняем скины каждые 100ms
+        let spinCount = 0;
+        const maxSpins = 15;
+        const spinInterval = setInterval(() => {
+            const randomSkin = getRandomSkin();
+            resultDiv.innerHTML = `
+                <img class="skin-img" src="${randomSkin.img}" alt="${randomSkin.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%2290%22%3E%3Crect width=%22180%22 height=%2290%22 fill=%22%23333%22/%3E%3Ctext x=%2290%22 y=%2250%22 text-anchor=%22middle%22 fill=%22%23FFD700%22 font-size=%2220%22 font-family=%22Arial%22%3E🎁%3C/text%3E%3C/svg%3E'">
+                <div class="skin-name" style="color:${randomSkin.color || '#fff'};">${randomSkin.name}</div>
+                <div class="skin-price">💰 ${randomSkin.price}$</div>
+                <div class="skin-rarity ${randomSkin.class}">${randomSkin.rarity}</div>
+            `;
+            spinCount++;
+            if (spinCount >= maxSpins) {
+                clearInterval(spinInterval);
+                // Финальный результат
+                const finalSkin = getRandomSkin();
+                inventory.push(finalSkin);
+                resultDiv.innerHTML = `
+                    <img class="skin-img" src="${finalSkin.img}" alt="${finalSkin.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%2290%22%3E%3Crect width=%22180%22 height=%2290%22 fill=%22%23333%22/%3E%3Ctext x=%2290%22 y=%2250%22 text-anchor=%22middle%22 fill=%22%23FFD700%22 font-size=%2220%22 font-family=%22Arial%22%3E🎁%3C/text%3E%3C/svg%3E'">
+                    <div class="skin-name" style="color:${finalSkin.color || '#fff'};">${finalSkin.name}</div>
+                    <div class="skin-price">💰 ${finalSkin.price}$</div>
+                    <div class="skin-rarity ${finalSkin.class}">${finalSkin.rarity}</div>
+                `;
+                isSpinning = false;
+                updateUI();
+            }
+        }, 100);
+    }
+
+    function buyCase() {
+        if (balance < caseBuyPrice) {
+            alert('❌ Недостаточно денег для покупки кейса!');
+            return;
+        }
+        balance -= caseBuyPrice;
+        updateUI();
+        alert('📦 Кейс куплен! Теперь ты можешь открыть его за 250$ (или продать за 200$)');
+    }
+
+    function sellSkin(index) {
+        const skin = inventory[index];
+        if (!skin) return;
+        balance += skin.price;
+        inventory.splice(index, 1);
+        updateUI();
+        resultDiv.innerHTML = `
+            <span style="color:#4caf50;">✅ Продано: ${skin.name} за ${skin.price}$</span>
+        `;
+    }
+
+    function renderInventory() {
+        if (inventory.length === 0) {
+            inventoryDiv.innerHTML = `<div style="color:#888; text-align:center;">🎒 Инвентарь пуст</div>`;
+            return;
+        }
+        let html = '';
+        inventory.forEach((skin, index) => {
+            html += `
+                <div class="inv-item" style="border-left: 4px solid ${skin.color || '#888'};">
+                    <img class="inv-img" src="${skin.img}" alt="${skin.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2230%22%3E%3Crect width=%2250%22 height=%2230%22 fill=%22%23333%22/%3E%3Ctext x=%2225%22 y=%2220%22 text-anchor=%22middle%22 fill=%22%23FFD700%22 font-size=%2214%22 font-family=%22Arial%22%3E🎁%3C/text%3E%3C/svg%3E'">
+                    <span class="inv-name" style="color:${skin.color || '#fff'};">${skin.name}</span>
+                    <span class="inv-price">💰 ${skin.price}$</span>
+                    <button class="btn-sell" onclick="sellSkin(${index})">Продать</button>
+                </div>
+            `;
+        });
+        inventoryDiv.innerHTML = html;
+    }
+
+    // ==================== ОБРАБОТЧИКИ ====================
+    openBtn.addEventListener('click', openCase);
+    buyCaseBtn.addEventListener('click', buyCase);
+
+    // ==================== СТАРТ ====================
+    updateUI();
+    resultDiv.innerHTML = `<span style="color:#888;">💰 Открой кейс и получи скин!</span>`;
+</script>
 </body>
 </html>
