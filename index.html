@@ -114,13 +114,10 @@
             color: #ccc;
             font-size: clamp(14px, 1.2vw, 18px);
         }
-        .skin-list-item img {
-            width: 80px;
-            height: 40px;
-            object-fit: contain;
-            background: #0a0a1a;
-            border-radius: 6px;
-            padding: 4px;
+        .skin-list-item .sl-icon {
+            font-size: 32px;
+            width: 40px;
+            text-align: center;
         }
         .skin-list-item .sl-name {
             flex: 1;
@@ -153,14 +150,9 @@
             justify-content: center;
             flex-direction: column;
         }
-        .result .skin-img {
-            width: clamp(180px, 25vw, 280px);
-            height: auto;
-            max-height: 140px;
-            object-fit: contain;
-            background: #0a0a1a;
-            border-radius: 12px;
-            padding: 8px;
+        .result .skin-icon {
+            font-size: 60px;
+            margin-bottom: 5px;
         }
         .result .skin-name {
             font-size: clamp(22px, 2.8vw, 34px);
@@ -226,6 +218,10 @@
             color: #ccc;
             font-size: clamp(14px, 1.2vw, 18px);
         }
+        .inv-item .inv-icon {
+            font-size: 28px;
+            margin-right: 10px;
+        }
         .inv-item .inv-name {
             font-weight: bold;
             flex: 1;
@@ -279,26 +275,25 @@
     </div>
 
     <div class="inventory" id="inventory">
-        <div style="color:#888; text-align:center; font-size: clamp(16px, 1.8vw, 22px);">🎒 Инвентарь (скины для продажи)</div>
+        <div style="color:#888; text-align:center; font-size: clamp(16px, 1.8vw, 22px);">🎒 Инвентарь пуст</div>
     </div>
 </div>
 
 <script>
-    // ==================== КЕЙСЫ С ШАНСАМИ ====================
-    // Чем дороже скин — тем меньше шанс (в %)
+    // ==================== КЕЙСЫ (с иконками-эмодзи) ====================
     const caseData = [{
         id: 'case1',
         name: 'Субнатика',
-        price: 600,
+        price: 580,
         icon: '🌊',
         items: 43,
         rarityLabel: 'NEW',
         skins: [
-            { name: "P250 | Sand Dune", price: 300, rarity: "Common", class: "rarity-common", chance: 40, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_p250_irradiated_alert_light_large.91f6e6b2f5f5b3f5c0f5f5b3f5c0f5f5.png" },
-            { name: "MAG-7 | Heat", price: 500, rarity: "Common", class: "rarity-common", chance: 30, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mag7_heat_large.8c3a8a3b8a3b8a3b8a3b8a3b8a3b8a3b.png" },
-            { name: "MP9 | Green Plaid", price: 800, rarity: "Uncommon", class: "rarity-uncommon", chance: 18, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_mp9_green_plaid_large.9f6e6b2f5f5b3f5c0f5f5b3f5c0f5f5.png" },
-            { name: "AWP | Safari Mesh", price: 1200, rarity: "Uncommon", class: "rarity-uncommon", chance: 10, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_safari_mesh_large.0b2c5b3c8a3b8a3b8a3b8a3b8a3b8a3b.png" },
-            { name: "M4A1-S | Nightmare", price: 2500, rarity: "Rare", class: "rarity-rare", chance: 2, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_s_nightmare_large.1c3a8a3b8a3b8a3b8a3b8a3b8a3b8a3b.png" }
+            { name: "P250 | Sand Dune", price: 30, rarity: "Common", class: "rarity-common", chance: 40, icon: "🔫" },
+            { name: "MAG-7 | Heat", price: 50, rarity: "Common", class: "rarity-common", chance: 30, icon: "💥" },
+            { name: "MP9 | Green Plaid", price: 80, rarity: "Uncommon", class: "rarity-uncommon", chance: 18, icon: "🔫" },
+            { name: "AWP | Safari Mesh", price: 120, rarity: "Uncommon", class: "rarity-uncommon", chance: 10, icon: "🎯" },
+            { name: "M4A1-S | Nightmare", price: 250, rarity: "Rare", class: "rarity-rare", chance: 2, icon: "🌙" }
         ]
     }, {
         id: 'case2',
@@ -308,10 +303,10 @@
         items: 40,
         rarityLabel: 'NEW',
         skins: [
-            { name: "AK-47 | Slate", price: 650, rarity: "Rare", class: "rarity-rare", chance: 45, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_slate_large.2d4b5c3d8a3b8a3b8a3b8a3b8a3b8a3b.png" },
-            { name: "AWP | Mortis", price: 970, rarity: "Epic", class: "rarity-epic", chance: 30, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_mortis_large.3e5c6d4e9b4c9b4c9b4c9b4c9b4c9b4c.png" },
-            { name: "AK-47 | Neon Rider", price: 12000, rarity: "Legendary", class: "rarity-legendary", chance: 18, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_neon_rider_large.4f6d7e5f0c5d0c5d0c5d0c5d0c5d0c5d.png" },
-            { name: "M4A1-S | Printstream", price: 25000, rarity: "Covert", class: "rarity-covert", chance: 7, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_m4a1_s_printstream_large.5g7e8f6g1d6e1d6e1d6e1d6e1d6e1d6e.png" }
+            { name: "AK-47 | Slate", price: 300, rarity: "Rare", class: "rarity-rare", chance: 45, icon: "⚫" },
+            { name: "AWP | Mortis", price: 600, rarity: "Epic", class: "rarity-epic", chance: 30, icon: "💀" },
+            { name: "AK-47 | Neon Rider", price: 1200, rarity: "Legendary", class: "rarity-legendary", chance: 18, icon: "🏍️" },
+            { name: "M4A1-S | Printstream", price: 2500, rarity: "Covert", class: "rarity-covert", chance: 7, icon: "🖨️" }
         ]
     }, {
         id: 'case3',
@@ -321,10 +316,10 @@
         items: 41,
         rarityLabel: 'NEW',
         skins: [
-            { name: "AWP | Dragon Lore", price: 3500, rarity: "Covert", class: "rarity-covert", chance: 40, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_dragon_lore_large.0b2c5b3c8a3b8a3b8a3b8a3b8a3b8a3b.png" },
-            { name: "Karambit | Doppler", price: 6000, rarity: "Knife", class: "rarity-knife", chance: 30, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_karambit_doppler_large.6h8f9g7h2e7f2e7f2e7f2e7f2e7f2e7.png" },
-            { name: "M9 Bayonet | Fade", price: 75000, rarity: "Knife", class: "rarity-knife", chance: 10, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_m9_bayonet_fade_large.7i9g0h8i3f8g3f8g3f8g3f8g3f8g3f8.png" },
-            { name: "Sport Gloves | Vice", price: 85000, rarity: "Gloves", class: "rarity-gloves", chance: 5, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_gloves_sport_vice_large.8j0h1i9j4g9h4g9h4g9h4g9h4g9h4g9.png" }
+            { name: "AWP | Dragon Lore", price: 3500, rarity: "Covert", class: "rarity-covert", chance: 40, icon: "🐉" },
+            { name: "Karambit | Doppler", price: 6000, rarity: "Knife", class: "rarity-knife", chance: 30, icon: "🔪" },
+            { name: "M9 Bayonet | Fade", price: 7500, rarity: "Knife", class: "rarity-knife", chance: 20, icon: "🗡️" },
+            { name: "Sport Gloves | Vice", price: 8500, rarity: "Gloves", class: "rarity-gloves", chance: 10, icon: "🧤" }
         ]
     }, {
         id: 'case4',
@@ -334,15 +329,30 @@
         items: 49,
         rarityLabel: 'NEW',
         skins: [
-            { name: "Specialist Gloves | Crimson Web", price: 9500, rarity: "Gloves", class: "rarity-gloves", chance: 40, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_gloves_specialist_crimson_web_large.0a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p.png" },
-            { name: "AK-47 | Gold Arabesque", price: 18000, rarity: "Legendary", class: "rarity-legendary", chance: 28, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_ak47_gold_arabesque_large.2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q.png" },
-            { name: "Karambit | Fade", price: 22000, rarity: "Knife", class: "rarity-knife", chance: 18, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_karambit_fade_large.6h8f9g7h2e7f2e7f2e7f2e7f2e7f2e7.png" },
-            { name: "Butterfly Knife | Crimson Web", price: 280000, rarity: "Knife", class: "rarity-knife", chance: 10, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_knife_butterfly_crimson_web_large.9k1i2j0k5h0i5h0i5h0i5h0i5h0i5h0.png" },
-            { name: "AWP | Gungnir", price: 350000, rarity: "Covert", class: "rarity-covert", chance: 4, img: "https://steamcdn-a.akamaihd.net/apps/730/icons/econ/default_generated/weapon_awp_gungnir_large.1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p.png" }
+            { name: "Specialist Gloves | Crimson Web", price: 14000, rarity: "Gloves", class: "rarity-gloves", chance: 40, icon: "🧤" },
+            { name: "AK-47 | Gold Arabesque", price: 18000, rarity: "Legendary", class: "rarity-legendary", chance: 28, icon: "✨" },
+            { name: "Karambit | Fade", price: 22000, rarity: "Knife", class: "rarity-knife", chance: 18, icon: "🔪" },
+            { name: "Butterfly Knife | Crimson Web", price: 28000, rarity: "Knife", class: "rarity-knife", chance: 10, icon: "🦋" },
+            { name: "AWP | Gungnir", price: 35000, rarity: "Covert", class: "rarity-covert", chance: 4, icon: "⚡" }
+        ]
+    }, {
+        id: 'case5',
+        name: 'КОНА',
+        price: 1000000,
+        icon: '🛒',
+        items: 5,
+        rarityLabel: 'NEW',
+        skins: [
+            { name: "AMP | Африканская сетка", price: 100, rarity: "Common", class: "rarity-common", chance: 40, icon: "🔫" },
+            { name: "AK-47 | Сланец", price: 500, rarity: "Uncommon", class: "rarity-uncommon", chance: 28, icon: "⚫" },
+            { name: "AWP | Гунгнир", price: 250000, rarity: "Covert", class: "rarity-covert", chance: 18, icon: "💀" },
+            { name: "Desert Eagle | Пламя", price: 500000, rarity: "Rare", class: "rarity-rare", chance: 10, icon: "🔥" },
+            { name: "M4A4 | Бой", price: 1500000, rarity: "Epic", class: "rarity-epic", chance: 4, icon: "⚔️" }
         ]
     }];
+
     // ==================== СОСТОЯНИЕ ====================
-    let balance = 2500;
+    let balance = 10000;
     let inventory = [];
     let selectedCase = null;
     let isSpinning = false;
@@ -367,6 +377,39 @@
             }
         }
         return { ...skins[skins.length - 1] };
+    }
+
+    // ==================== ЗВУК ПРОКРУТКИ ====================
+    function playTick() {
+        try {
+            const ctx = new(window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.frequency.value = 600 + Math.random() * 400;
+            osc.type = 'sine';
+            gain.gain.setValueAtTime(0.08, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.06);
+        } catch (e) {}
+    }
+
+    function playWinSound() {
+        try {
+            const ctx = new(window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.frequency.value = 1200;
+            osc.type = 'sine';
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.2);
+        } catch (e) {}
     }
 
     // ==================== ФУНКЦИИ ====================
@@ -406,7 +449,7 @@
             const item = document.createElement('div');
             item.className = 'skin-list-item';
             item.innerHTML = `
-                <img src="${skin.img}" alt="${skin.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2240%22%3E%3Crect width=%2280%22 height=%2240%22 fill=%22%23333%22/%3E%3Ctext x=%2240%22 y=%2222%22 text-anchor=%22middle%22 fill=%22%23FFD700%22 font-size=%2218%22%3E🎁%3C/text%3E%3C/svg%3E'">
+                <span class="sl-icon">${skin.icon || '🎁'}</span>
                 <span class="sl-name">${skin.name}</span>
                 <span class="sl-price">${skin.price} ₽</span>
                 <span class="sl-chance">${skin.chance}%</span>
@@ -433,8 +476,9 @@
         const maxSpins = 12;
         const spinInterval = setInterval(() => {
             const randomSkin = getRandomSkin(caseObj.skins);
+            playTick();
             resultDiv.innerHTML = `
-                <img class="skin-img" src="${randomSkin.img}" alt="${randomSkin.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%2290%22%3E%3Crect width=%22180%22 height=%2290%22 fill=%22%23333%22/%3E%3Ctext x=%2290%22 y=%2250%22 text-anchor=%22middle%22 fill=%22%23FFD700%22 font-size=%2220%22%3E🎁%3C/text%3E%3C/svg%3E'">
+                <div class="skin-icon">${randomSkin.icon || '🎁'}</div>
                 <div class="skin-name" style="color:#fff;">${randomSkin.name}</div>
                 <div class="skin-price">${randomSkin.price} ₽</div>
                 <div class="skin-rarity ${randomSkin.class}">${randomSkin.rarity}</div>
@@ -444,8 +488,9 @@
                 clearInterval(spinInterval);
                 const finalSkin = getRandomSkin(caseObj.skins);
                 inventory.push(finalSkin);
+                playWinSound();
                 resultDiv.innerHTML = `
-                    <img class="skin-img" src="${finalSkin.img}" alt="${finalSkin.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%2290%22%3E%3Crect width=%22180%22 height=%2290%22 fill=%22%23333%22/%3E%3Ctext x=%2290%22 y=%2250%22 text-anchor=%22middle%22 fill=%22%23FFD700%22 font-size=%2220%22%3E🎁%3C/text%3E%3C/svg%3E'">
+                    <div class="skin-icon">${finalSkin.icon || '🎁'}</div>
                     <div class="skin-name" style="color:#fff;">${finalSkin.name}</div>
                     <div class="skin-price">${finalSkin.price} ₽</div>
                     <div class="skin-rarity ${finalSkin.class}">${finalSkin.rarity}</div>
@@ -464,7 +509,7 @@
         inventory.splice(index, 1);
         updateUI();
         resultDiv.innerHTML =
-            `<span style="color:#4caf50; font-size: clamp(18px, 2.2vw, 28px);">✅ Продано: ${skin.name} за ${skin.price}₽</span>`;
+            `<span style="color:#4caf50; font-size: clamp(18px, 2.2vw, 28px);">✅ Продано: ${skin.icon || '🎁'} ${skin.name} за ${skin.price}₽</span>`;
     }
 
     function renderInventory() {
@@ -476,6 +521,7 @@
         inventory.forEach((skin, index) => {
             html += `
                 <div class="inv-item">
+                    <span class="inv-icon">${skin.icon || '🎁'}</span>
                     <span class="inv-name">${skin.name}</span>
                     <span class="inv-price">${skin.price} ₽</span>
                     <button class="btn-sell" onclick="sellSkin(${index})">Продать</button>
